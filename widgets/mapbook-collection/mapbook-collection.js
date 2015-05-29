@@ -777,7 +777,7 @@ define([
         * @memberOf widgets/mapbook-collection/mapbook-collection
         */
         _saveModuleSequence: function (node, srcContainer, targetContainer) {
-            var moduleKey, bookData, targetColIndex, srcColIndex, targetNodes, sourceNodes, firstChild, nodeIndex, listItemIndex, selectedPage;
+            var moduleKey, bookData, targetColIndex, srcColIndex, targetNodes, sourceNodes, firstChild, nodeIndex, selectedPage;
             targetColIndex = parseInt(domAttr.get(targetContainer.node, "columnIndex"), 10);
             targetNodes = targetContainer.getAllNodes();
             bookData = this._getConfigData(appGlobals.bookInfo[appGlobals.currentBookIndex].BookConfigData);
@@ -808,9 +808,6 @@ define([
                     moduleKey = domAttr.get(sourceNodes[nodeIndex], "moduleKey");
                     bookData.content[srcColIndex].push(moduleKey);
                 }
-            }
-            if (this.currentIndex > 0 && this.mapBookDetails[appGlobals.currentBookIndex][1] === "EmptyContent") {
-                listItemIndex = this.currentIndex - 1;
             }
             if (domAttr.get(node, "type") === "image") {
                 this._setImageDimensions(query('.esriImageModule', node)[0], false);
@@ -1017,11 +1014,16 @@ define([
                             moduleAttr[key] = moduleInfo[moduleType][key];
                         }
                         moduleSettingContent = domConstruct.create("div", { "class": "esriModuleContent" }, divModuleSetting);
-                        label = domConstruct.create("div", { "class": "esriSettingLabel" }, moduleSettingContent);
-
-                        labelValue = key.charAt(0).toUpperCase() + key.slice(1);
-                        labelValue = labelValue.replace("_", ' ');
-                        domAttr.set(label, "innerHTML", labelValue);
+                        // hide all not required to display fields in setting dialog.
+                        if (key !== "type" && key !== "height") {
+                            label = domConstruct.create("div", { "class": "esriSettingLabel" }, moduleSettingContent);
+                            //Concatenating  moduleType and moduleKey(config attribute) strings with "Module" word to create nls tag.
+                            labelValue = moduleType + "Module" + key.charAt(0).toUpperCase() + key.slice(1);
+                            //fetch label values from nls using nls tag
+                            domAttr.set(label, "innerHTML", nls[labelValue]);
+                        } else {
+                            domStyle.set(moduleSettingContent, "display", "none");
+                        }
                         if (key === "text") {
                             //create text editor if module type is text.
                             inputContainer = this._createTextEditor(moduleSettingContent, moduleAttr, key);
@@ -1033,6 +1035,7 @@ define([
                             //display a webmap navigation dialog if module type is map.
                             domStyle.set(label, "display", "none");
                             topic.publish("_createSelectWebmapDialogHandler", divModuleSetting, moduleContainer);
+                            domStyle.set(moduleSettingContent, "display", "none");
                         } else {
                             //display text box.
                             if ((key === "URL" && moduleType !== "flickr") || key === "username" || key === "rows" || key === "columns") {
@@ -1045,10 +1048,6 @@ define([
                         }
                         if (inputContainer) {
                             moduleInputs.push(inputContainer);
-                        }
-                        // hide all not required to display fields in setting dialog.
-                        if (key === "type" || key === "height" || key === "width") {
-                            domStyle.set(moduleSettingContent, "display", "none");
                         }
                     }
                 }
