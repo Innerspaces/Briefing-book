@@ -276,7 +276,7 @@ define([], function () {
             },
             "logo": {
                 type: "logo",
-                URL: "themes/images/logo-default.jpg",
+                URL: "themes/images/esri-logo.png",
                 height: 50 // in pixel
             },
             "TOC": {
