@@ -70,7 +70,7 @@ define([
             if (container && container.offsetWidth) {
                 containerWidth = domStyle.get(container, "width") - 5;
                 outerContainerWidth = dom.byId("divWebmapContent").childNodes.length * containerWidth;
-                for (i = 0; i < dom.byId("divWebmapContent").childNodes.length; i++) {
+                for (i = 0; i < dom.byId("divWebmapContent").children.length; i++) {
                     domAttr.set(dom.byId("divWebmapContent").children[i], "width", containerWidth + 'px');
                     dom.byId("divWebmapContent").children[i].style.width = containerWidth + 'px';
                 }
@@ -95,7 +95,6 @@ define([
             this._createPaginationFooter(divSelectWebMapContainer);
             container.appendChild(divSelectWebMapContainer);
             this._setDefaultSearchOption();
-
         },
 
         /**
@@ -455,7 +454,9 @@ define([
                 if (queryParam !== '') {
                     queryParam += ' AND ';
                 }
-                queryParam += 'title:' + dijit.byId("searchTagTextBox").get("value");
+                //add search term in query string to search the items, which has search term in it's title, tags, snippet or description.
+                queryParam += '(title:' + dijit.byId("searchTagTextBox").get("value") + ' OR tags:' + dijit.byId("searchTagTextBox").get("value") +
+                    ' OR snippet:' + dijit.byId("searchTagTextBox").get("value") + ' OR description:' + dijit.byId("searchTagTextBox").get("value") + ')';
             }
             this._queryPortalForWebmaps(queryParam);
         },

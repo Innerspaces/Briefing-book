@@ -1394,6 +1394,7 @@ h2 {
 
 .esriModuleContent {
 	padding: 0px 10px;
+	clear: both;
 }
 
 .esriSettingSave, .esriSettingReset, .esriSelectWebmapBtn {
@@ -1417,7 +1418,6 @@ h2 {
 .dijitTextBox {
 	width: 84%;
 	float: left;
-	height: 20px;
 	padding: 0px;
 	height: 25px;
 	margin-bottom: 10px;
@@ -1438,10 +1438,8 @@ h2 {
 	float: left;
 	width: 15%;
 	margin: 3px 0px;
-	height: 20px;
-	line-height: 20px;
-	padding-top: 5px;
-	white-space: nowrap;
+	padding-top: 8px;
+	word-wrap: break-word;
 }
 
 .esriSettingModuleIcon {

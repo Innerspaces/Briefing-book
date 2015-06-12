@@ -250,7 +250,6 @@ define([], function () {
             "flickr": {
                 type: "flickr",
                 username: '',
-                apiKey: '',
                 title: '',
                 caption: '',
                 URL: '',

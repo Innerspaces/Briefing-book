@@ -23,13 +23,14 @@ define([
     "dojo/dom-construct",
     "dojo/dom-attr",
     "dojo/dom-class",
+    "dojo/dom-style",
     "dojo/dom",
     "dojo/on",
     "dojo/topic",
     "dojo/i18n!nls/localized-strings",
     "esri/request",
     "dojo/parser"
-], function (declare, lang, _WidgetBase, Dialog, domConstruct, domAttr, domClass, dom, on, topic, nls, esriRequest) {
+], function (declare, lang, _WidgetBase, Dialog, domConstruct, domAttr, domClass, domStyle, dom, on, topic, nls, esriRequest) {
     return declare([_WidgetBase], {
         _portal: null,
         /**
@@ -96,8 +97,10 @@ define([
             //show check box selected if respective sharing option is true
             if (appGlobals.bookInfo[appGlobals.currentBookIndex].BookConfigData.shareWithEveryone) {
                 domClass.add(dom.byId("chkBoxeveryone"), "esriCheckBoxChecked");
+                domClass.add(dom.byId("chkBoxorg"), "opacityChkBox");
             } else {
                 domClass.remove(dom.byId("chkBoxeveryone"), "esriCheckBoxChecked");
+                domClass.remove(dom.byId("chkBoxorg"), "opacityChkBox");
             }
             if (appGlobals.bookInfo[appGlobals.currentBookIndex].BookConfigData.shareWithOrg) {
                 domClass.add(dom.byId("chkBoxorg"), "esriCheckBoxChecked");
@@ -219,6 +222,7 @@ define([
                 } else {
                     _self.alertDialog._setContent(nls.errorMessages.shareItemError, 0);
                 }
+                domStyle.set(dom.byId("outerLoadingIndicator"), "display", "none");
             });
         }
     });

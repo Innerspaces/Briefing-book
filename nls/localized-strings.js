@@ -109,6 +109,22 @@ define({
         arcgisOptionText: "ArcGIS Online",//Shown as option in select webmap dialog to search webmaps on ArcGIS.
         myContentOptionText: "My Content", //Shown as option in select webmap dialog to search webmaps in logged in user's content.
         organizationOptionText: "My Organization", //Shown as option in select webmap dialog to search webmaps in configured organization.
+        webmapModuleTitle: "Title", //Shown as text for title attribute for webmap module in setting dialog.
+        webmapModuleCaption: "Caption", //Shown as text for caption attribute for webmap module in setting dialog.
+        webmapModuleURL: "URL", //Shown as text for URL attribute for webmap module in setting dialog.
+        HTMLModuleHTML: "HTML", //Shown as text for HTML attribute for HTML module in setting dialog.
+        videoModuleTitle: "Title", //Shown as text for title attribute for video module in setting dialog.
+        videoModuleCaption: "Caption", //Shown as text for caption attribute for video module in setting dialog.
+        videoModuleURL: "URL", //Shown as text for URL attribute for video module in setting dialog.
+        imageModuleURL: "URL", //Shown as text for URL attribute for image module in setting dialog.
+        flickrModuleTitle: "Title", //Shown as text for title attribute for flickr module in setting dialog.
+        flickrModuleCaption: "Caption", //Shown as text for caption attribute for flickr module in setting dialog.
+        flickrModuleUsername: "Photo set username", //Shown as text for username attribute for flickr module in setting dialog.
+        flickrModuleTags: "Tags", //Shown as text for tags attribute for flickr module in setting dialog.
+        flickrModuleRows: "Rows", //Shown as text for rows attribute for flickr module in setting dialog.
+        flickrModuleColumns: "Columns", //Shown as text for columns attribute for flickr module in setting dialog.
+        flickrModuleURL: "URL", //Shown as text for URL attribute for flickr module in setting dialog.
+        logoModuleURL: "URL", //Shown as text for URL attribute for logo module in setting dialog.
         errorMessages: {
             webmapSearchFailed: "An error occurred while searching the map",//Shown in select webmap dialog if app fails to search webmaps.
             updatingItemError: "Updating of the selected item failed",//Shown in alert message if app fails to update/save any item on AGOL.

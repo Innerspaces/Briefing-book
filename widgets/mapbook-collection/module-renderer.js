@@ -771,7 +771,11 @@ define([
             //fetch setid from provided flickr URL.
             flickUrl = moduleData.URL.split('/');
             if (flickUrl.length > 1) {
-                flickrSetId = flickUrl[flickUrl.length - 1];
+                if (moduleData.URL[moduleData.URL.length - 1] !== '/') {
+                    flickrSetId = flickUrl[flickUrl.length - 1];
+                } else {
+                    flickrSetId = flickUrl[flickUrl.length - 2];
+                }
             } else {
                 flickrSetId = moduleData.URL;
             }
@@ -786,10 +790,6 @@ define([
             //add 'setid' param if provided.
             if (flickrSetId && lang.trim(flickrSetId) !== "") {
                 flickrParams.setid = flickrSetId;
-            }
-            //add 'apikey' param if provided.
-            if (moduleData.apiKey && lang.trim(moduleData.apiKey) !== "") {
-                flickrParams.apikey = moduleData.apiKey;
             }
             //add 'tags' param if provided.
             if (moduleData.tags && lang.trim(moduleData.tags) !== "") {

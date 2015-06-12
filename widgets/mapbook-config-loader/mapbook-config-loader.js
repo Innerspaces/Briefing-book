@@ -252,7 +252,7 @@ define([
                 window.localStorage.setItem(appGlobals.appConfigData.Credential, null, { expire: -1 });
             } else {
                 if (cookie.isSupported()) {
-                    appGlobals.cookie(appGlobals.appConfigData.Credential, null, { expire: -1 });
+                    cookie(appGlobals.appConfigData.Credential, null, { expire: -1 });
                 }
             }
         },
@@ -298,6 +298,14 @@ define([
                             //save folder id of book item.
                             if (itemInfo.item.ownerFolder) {
                                 itemInfo.itemData.folderId = itemInfo.item.ownerFolder;
+                            }
+                            //set item access info in book config
+                            if (itemInfo.item.access === "public") {
+                                itemInfo.itemData.BookConfigData.shareWithEveryone = true;
+                                itemInfo.itemData.BookConfigData.shareWithOrg = true;
+                            } else if (itemInfo.item.access === "org") {
+                                itemInfo.itemData.BookConfigData.shareWithEveryone = false;
+                                itemInfo.itemData.BookConfigData.shareWithOrg = true;
                             }
                             defer.resolve(itemInfo.itemData);
                         } else {
@@ -507,8 +515,9 @@ define([
                             appGlobals.bookInfo[appGlobals.currentBookIndex].BookConfigData.itemId = result.id;
                             if (appGlobals.appConfigData.DisplayBook === "group") {
                                 topic.publish("shareBookHandler", true);
+                            } else {
+                                _self._saveSelectedBook();
                             }
-                            _self._saveSelectedBook();
                         }
                         topic.publish("destroyWebmapHandler");
                         setTimeout(function () {
@@ -520,10 +529,12 @@ define([
                         if (reqType === "add") {
                             if (appGlobals.appConfigData.DisplayBook === "group") {
                                 topic.publish("shareBookHandler", true);
+                            } else {
+                                _self._saveSelectedBook();
                             }
-                            _self._saveSelectedBook();
+                        } else {
+                            domStyle.set(dom.byId("outerLoadingIndicator"), "display", "none");
                         }
-                        domStyle.set(dom.byId("outerLoadingIndicator"), "display", "none");
                     }
                 }
             }, function (err) {
