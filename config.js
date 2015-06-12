@@ -18,44 +18,57 @@
 define([], function () {
     return {
         /*  appSetting contains application configuration */
-
+        // ------------------------------------------------------------------------------------------------------------------------
+        // APPLICATION SETTINGS
+        // ------------------------------------------------------------------------------------------------------------------------
+        // Set parameters to define will look through color, image, and tite selection.
         // Set application title
         ApplicationName: "Briefing Book Gallery",
 
         // Set application icon path
         ApplicationIcon: "themes/images/mapbook-app-icon.png",
 
-        // Set application Favicon path
+        // Set application Favicon path 
         ApplicationFavicon: "themes/images/mapbook-favicon.ico",
 
-        // Set application home screen path
-        AppHomeScreenIcon: "themes/images/home-icon-grey.ico",
+        // Set application home screen path (options are: home-icon-blue.ico and home-icon-grey.ico)
+        AppHomeScreenIcon: "themes/images/home-icon-blue.ico",
+
+        // Set theme for application (options are: grey or blue.)
+        ApplicationTheme: "blue",
+
+        // Set Briefing Book Cover icon
+        // Options are: Grey Default Image "map-book-bg-grey.png" or Blue Default Image "map-book-bg.png"
+        BriefingBookCoverIcon: "themes/images/map-book-bg.png",
 
         // Set application mode to true to allow users to View, Create and Edit books.
         // Set application mode to false to allow users to View public and private books without editing options.
-        AuthoringMode: true, // false: Public mode and true: Editable mode
+        AuthoringMode: true, // false: Viewing mode and true: Editable and\or viewing mode
 
-        // Set theme for application
-        ApplicationTheme: "grey", // grey||blue.css
+        // ------------------------------------------------------------------------------------------------------------------------
+        // ORGANIZATION SETTINGS
+        // ------------------------------------------------------------------------------------------------------------------------
+        // Set where Briefing Books are created and stored
 
-        // Set Briefing Book icon
-        BriefingBookCoverIcon: "themes/images/map-book-bg-grey.png",
+        // Display Book Options: organization, all, group
+        DisplayBook: "all",
 
-        // Set search level for books
-        DisplayBook: "organization", //organization, all, group
-
-        // Set group id if 'DisplayBook' is set to 'group'
+        // Set group id of 'DisplayBook' is set to 'group'
         DisplayGroup: "",
 
-        // The URL for your ArcGIS Online Organization or Portal for ArcGIS site,
+        // The URL for your ArcGIS Online organization or Portal for ArcGIS site,
         // e.g., something like "https://myOrg.maps.arcgis.com" for an Online Organization
-        PortalURL: "",
+        PortalURL: "https://arcgis.com",
 
         // OAuth application id; This parameter is only required for ArcGIS organizational accounts using Enterprise Logins.Leave empty if you are not using Enterprise Logins
         OAuthAppid: "", // e.g., something like "AFTKRmv16wj14N3z"
 
         // The unique tag given to each book. This tag will determine which books are visible in the Briefing Book application.
         ConfigSearchTag: "",
+
+        // ------------------------------------------------------------------------------------------------------------------------
+        // OPTIONAL SETTINGS
+        // ------------------------------------------------------------------------------------------------------------------------
 
         // cookie/local storage name  for storing user credential
         Credential: "esribriefingbookcredential",
@@ -87,8 +100,11 @@ define([], function () {
         // Video URL for Vimeo
         VimeoVideoUrl: "https://player.vimeo.com/video/",
 
+        // ------------------------------------------------------------------------------------------------------------------------
+        // MODULE AND LAYOUT SETTINGS
+        // ------------------------------------------------------------------------------------------------------------------------
         /* module Defaults contains default settings for each and every module */
-        /* cover page layout contains layout for index page*/
+        /* Cover page layout contains layout for index page*/
         CoverPageLayout: {
             title: "Briefing Book Title",
             name: "coverPageLayout1",
@@ -317,17 +333,15 @@ define([], function () {
             }
         },
 
-        // Set device resolution for visual cues
+
+        // Set visual cues to be displayed in authoring mode to illustrate when the book will require scrolling on tablet devices. 
+
         DeviceResolution: [{
-            devicename: "I-Pad",
+            devicename: "iPad",
             width: 1024,
             height: 768
         }, {
-            devicename: "I-Pad3",
-            width: 2048,
-            height: 1536
-        }, {
-            devicename: "Samsung tab",
+            devicename: "Android",
             width: 1280,
             height: 800
         }]
