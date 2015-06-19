@@ -51,14 +51,14 @@ define([], function () {
         // Set where Briefing Books are created and stored
 
         // Display Book Options: organization, all, group
-        DisplayBook: "all",
+        DisplayBook: "organization",
 
         // Set group id of 'DisplayBook' is set to 'group'
         DisplayGroup: "",
 
         // The URL for your ArcGIS Online organization or Portal for ArcGIS site,
         // e.g., something like "https://myOrg.maps.arcgis.com" for an Online Organization
-        PortalURL: "https://arcgis.com",
+        PortalURL: "https://myOrg.maps.arcgis.com",
 
         // OAuth application id; This parameter is only required for ArcGIS organizational accounts using Enterprise Logins.Leave empty if you are not using Enterprise Logins
         OAuthAppid: "", // e.g., something like "AFTKRmv16wj14N3z"
