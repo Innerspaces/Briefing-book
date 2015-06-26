@@ -128,7 +128,9 @@ define([
             moduleData = this._getConfigData(appGlobals.bookInfo[appGlobals.currentBookIndex].ModuleConfigData);
             contentIndex = array.indexOf(bookList.content[colIndex], moduleKey);
             bookList.content[colIndex].splice(contentIndex, 1);
-            this.mapBookDetails[appGlobals.currentBookIndex][this.currentIndex].content[colIndex].splice(contentIndex, 1);
+            if (array.indexOf(this.mapBookDetails[appGlobals.currentBookIndex][this.currentIndex].content[colIndex], moduleKey) !== -1) {
+                this.mapBookDetails[appGlobals.currentBookIndex][this.currentIndex].content[colIndex].splice(contentIndex, 1);
+            }
             //delete data about module from book JSON.
             delete moduleData[moduleKey];
             //destroy map instance if selected module type is webmap.
